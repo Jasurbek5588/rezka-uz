@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>REZKA.UZ - Barcha kinolar va seriallar</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Arial, sans-serif; }
+    body { background-color: #141416; color: #e1e1e6; }
+    header { background-color: #1c1c1f; padding: 12px 4%; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #29292e; position: sticky; top: 0; z-index: 100; }
+    .logo { font-size: 22px; font-weight: 800; color: #00a8ff; text-decoration: none; }
+    .logo span { color: #fff; }
+    .search-box { flex: 0 1 400px; display: flex; }
+    .search-box input { width: 100%; padding: 8px 14px; background: #29292e; border: 1px solid #323238; border-radius: 4px 0 0 4px; color: #fff; outline: none; }
+    .search-box button { padding: 8px 16px; background: #00a8ff; border: none; color: #fff; border-radius: 0 4px 4px 0; cursor: pointer; font-weight: 600; }
+    .main-layout { display: flex; max-width: 1300px; margin: 20px auto; padding: 0 15px; gap: 20px; }
+    aside { flex: 0 0 220px; background: #1c1c1f; padding: 15px; border-radius: 6px; height: fit-content; }
+    .menu-title { font-size: 13px; color: #7c7c8a; text-transform: uppercase; margin-bottom: 10px; font-weight: 700; }
+    .menu-list { list-style: none; margin-bottom: 20px; }
+    .menu-list li a { display: block; padding: 8px 10px; color: #c4c4cc; text-decoration: none; font-size: 14px; border-radius: 4px; }
+    .menu-list li a:hover { background: #29292e; color: #00a8ff; }
+    main { flex: 1; }
+    .section-header { margin-bottom: 15px; border-bottom: 2px solid #29292e; padding-bottom: 10px; }
+    .section-title { font-size: 18px; font-weight: 600; color: #fff; }
+    .film-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); gap: 15px; }
+    .film-card { background: #1c1c1f; border-radius: 6px; overflow: hidden; position: relative; transition: transform 0.2s; text-decoration: none; color: inherit; display: block; }
+    .film-card:hover { transform: translateY(-4px); box-shadow: 0 5px 15px rgba(0, 168, 255, 0.2); }
+    .poster-container { position: relative; width: 100%; height: 240px; background: #2a2a30; }
+    .film-card img { width: 100%; height: 100%; object-fit: cover; }
+    .badge-quality { position: absolute; top: 8px; left: 8px; background: #00a8ff; color: #fff; font-size: 10px; font-weight: bold; padding: 2px 6px; border-radius: 3px; }
+    .badge-voice { position: absolute; top: 8px; right: 8px; background: rgba(0,0,0,0.75); color: #fff; font-size: 10px; padding: 2px 6px; border-radius: 3px; }
+    .film-info { padding: 10px; }
+    .film-title { font-size: 13px; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; margin-bottom: 4px; }
+    .film-meta { font-size: 11px; color: #7c7c8a; }
+  </style>
+</head>
+<body>
+
+  <header>
+    <a href="index.html" class="logo">REZKA<span>.UZ</span></a>
+    <div class="search-box">
+      <input type="text" placeholder="Kino yoki serial nomini kiriting...">
+      <button>Qidiruv</button>
+    </div>
+  </header>
+
+  <div class="main-layout">
+    <aside>
+      <div class="menu-title">Bo'limlar</div>
+      <ul class="menu-list">
+        <li><a href="index.html">Filmlar</a></li>
+        <li><a href="#">Seriallar</a></li>
+        <li><a href="#">Multfilmlar</a></li>
+        <li><a href="#">Anime</a></li>
+      </ul>
+      <div class="menu-title">Janrlar</div>
+      <ul class="menu-list">
+        <li><a href="#">Jangari</a></li>
+        <li><a href="#">Komediya</a></li>
+        <li><a href="#">Fantastika</a></li>
+        <li><a href="#">Dramatik</a></li>
+      </ul>
+    </aside>
+
+    <main>
+      <div class="section-header">
+        <h1 class="section-title">So'nggi qo'shilganlar</h1>
+      </div>
+
+      <div class="film-grid">
+        <!-- Клик ведет на страницу плеера movie.html -->
+        <a href="movie.html" class="film-card">
+          <div class="poster-container">
+            <span class="badge-quality">FHD 1080p</span>
+            <span class="badge-voice">O'zbek tilida</span>
+            <img src="https://images.unsplash.com/photo-1536440136628-849c177e76a1?auto=format&fit=crop&w=400&q=80" alt="Poster">
+          </div>
+          <div class="film-info">
+            <div class="film-title">Qasoskorlar: Intihoy</div>
+            <div class="film-meta">2026, Fantastika, Jangari</div>
+          </div>
+        </a>
+
+        <a href="movie.html" class="film-card">
+          <div class="poster-container">
+            <span class="badge-quality">HD</span>
+            <span class="badge-voice">1-Mavsum</span>
+            <img src="https://images.unsplash.com/photo-1626814026160-2237a95fc5a0?auto=format&fit=crop&w=400&q=80" alt="Poster">
+          </div>
+          <div class="film-info">
+            <div class="film-title">Koinot Sirlari (Serial)</div>
+            <div class="film-meta">2026, Sarguzasht</div>
+          </div>
+        </a>
+      </div>
+    </main>
+  </div>
+
+</body>
+</html>
