@@ -3,86 +3,217 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>REZKA.UZ - Barcha kinolar va seriallar</title>
-<style>
-  * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
-  body { background-color: #141416; color: #e1e1e6; }
-  header { background-color: #1c1c1f; padding: 10px 15px; display: flex; flex-direction: column; gap: 10px; border-bottom: 1px solid #29292e; sticky; top: 0; z-index: 100; }
-  .header-top { display: flex; justify-content: space-between; align-items: center; width: 100%; }
-  .logo { font-size: 20px; font-weight: 800; color: #00a8ff; text-decoration: none; }
-  .logo span { color: #fff; }
-  .search-box { display: flex; width: 100%; }
-  .search-box input { width: 100%; padding: 8px 12px; background: #29292e; border: 1px solid #323238; border-radius: 6px 0 0 6px; color: #fff; outline: none; font-size: 14px; }
-  .search-box button { padding: 8px 14px; background: #00a8ff; border: none; color: #fff; border-radius: 0 6px 6px 0; cursor: pointer; font-weight: 600; font-size: 13px; }
-  .main-layout { display: flex; flex-direction: column; padding: 15px; gap: 15px; }
-  aside { background: #1c1c1f; padding: 12px; border-radius: 8px; }
-  .menu-title { font-size: 11px; color: #7c7c8a; text-transform: uppercase; margin-bottom: 8px; font-weight: 700; }
-  .menu-list { display: flex; flex-wrap: wrap; gap: 6px; list-style: none; margin-bottom: 12px; }
-  .menu-list li a { display: block; padding: 5px 10px; background: #29292e; color: #c4c4cc; text-decoration: none; font-size: 12px; border-radius: 4px; }
-  .menu-list li a:hover { background: #00a8ff; color: #fff; }
-  .section-header { margin-bottom: 12px; border-bottom: 2px solid #29292e; padding-bottom: 6px; }
-  .section-title { font-size: 16px; font-weight: 600; color: #fff; }
-  .film-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
-  .film-card { background: #1c1c1f; border-radius: 8px; overflow: hidden; text-decoration: none; color: inherit; display: block; }
-  .poster-container { position: relative; width: 100%; height: 210px; background: #2a2a30; }
-  .film-card img { width: 100%; height: 100%; object-fit: cover; }
-  .badge-quality { position: absolute; top: 6px; left: 6px; background: #00a8ff; color: #fff; font-size: 9px; font-weight: bold; padding: 2px 5px; border-radius: 3px; }
-  .badge-voice { position: absolute; top: 6px; right: 6px; background: rgba(0,0,0,0.75); color: #fff; font-size: 9px; padding: 2px 5px; border-radius: 3px; }
-  .film-info { padding: 8px; }
-  .film-title { font-size: 12px; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; margin-bottom: 3px; }
-  .film-meta { font-size: 10px; color: #7c7c8a; }
+  <title>REZKA.UZ - Kinolar va seriallar</title>
+  <style>
+    :root {
+      --bg-color: #0f1015;
+      --card-bg: #181a20;
+      --accent: #00a8ff;
+      --accent-hover: #0088cc;
+      --text-main: #f0f2f5;
+      --text-muted: #8c939d;
+      --border-color: #262933;
+    }
 
-  @media (min-width: 768px) {
-    header { flex-direction: row; justify-content: space-between; padding: 12px 4%; }
-    .search-box { flex: 0 1 400px; }
-    .main-layout { flex-direction: row; max-width: 1300px; margin: 20px auto; }
-    aside { flex: 0 0 220px; }
-    .menu-list { display: block; }
-    .menu-list li a { background: transparent; padding: 8px 10px; font-size: 14px; }
-    .film-grid { grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); gap: 15px; }
-    .poster-container { height: 240px; }
-  }
-</style>
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
+    body { background-color: var(--bg-color); color: var(--text-main); -webkit-tap-highlight-color: transparent; }
 
+    /* Header */
+    header { 
+      background: rgba(24, 26, 32, 0.85); 
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      padding: 12px 16px; 
+      position: sticky; 
+      top: 0; 
+      z-index: 100; 
+      border-bottom: 1px solid var(--border-color);
+    }
+    
+    .header-content {
+      max-width: 1300px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .top-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo { 
+      font-size: 22px; 
+      font-weight: 900; 
+      color: var(--accent); 
+      text-decoration: none; 
+      letter-spacing: 0.5px;
+    }
+    .logo span { color: #fff; }
+
+    /* Lang Selector */
+    .lang-switcher {
+      display: flex;
+      background: #222530;
+      padding: 3px;
+      border-radius: 8px;
+      border: 1px solid var(--border-color);
+    }
+    .lang-btn {
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      padding: 4px 10px;
+      font-size: 11px;
+      font-weight: 700;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .lang-btn.active {
+      background: var(--accent);
+      color: #fff;
+      box-shadow: 0 2px 8px rgba(0, 168, 255, 0.4);
+    }
+
+    /* Search */
+    .search-box { display: flex; width: 100%; }
+    .search-box input { 
+      width: 100%; 
+      padding: 10px 14px; 
+      background: #222530; 
+      border: 1px solid var(--border-color); 
+      border-radius: 8px 0 0 8px; 
+      color: #fff; 
+      outline: none; 
+      font-size: 14px; 
+    }
+    .search-box input::placeholder { color: var(--text-muted); }
+    .search-box button { 
+      padding: 10px 18px; 
+      background: var(--accent); 
+      border: none; 
+      color: #fff; 
+      border-radius: 0 8px 8px 0; 
+      cursor: pointer; 
+      font-weight: 600; 
+      font-size: 13px;
+      transition: background 0.2s;
+    }
+    .search-box button:hover { background: var(--accent-hover); }
+
+    /* Main Layout */
+    .main-layout { max-width: 1300px; margin: 20px auto; padding: 0 16px; display: flex; flex-direction: column; gap: 20px; }
+    
+    /* Sidebar Navigation */
+    aside { background: var(--card-bg); padding: 16px; border-radius: 12px; border: 1px solid var(--border-color); }
+    .menu-title { font-size: 11px; color: var(--text-muted); text-transform: uppercase; margin-bottom: 10px; font-weight: 800; letter-spacing: 0.5px; }
+    .menu-list { display: flex; flex-wrap: wrap; gap: 8px; list-style: none; margin-bottom: 16px; }
+    .menu-list li a { 
+      display: block; 
+      padding: 6px 12px; 
+      background: #222530; 
+      color: var(--text-main); 
+      text-decoration: none; 
+      font-size: 13px; 
+      border-radius: 6px; 
+      transition: all 0.2s;
+    }
+    .menu-list li a:hover { background: var(--accent); color: #fff; }
+
+    /* Content Area */
+    main { flex: 1; }
+    .section-header { margin-bottom: 16px; display: flex; align-items: center; justify-content: space-between; border-bottom: 2px solid var(--border-color); padding-bottom: 8px; }
+    .section-title { font-size: 18px; font-weight: 700; color: #fff; }
+
+    /* Movie Cards Grid */
+    .film-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
+    .film-card { 
+      background: var(--card-bg); 
+      border-radius: 10px; 
+      overflow: hidden; 
+      text-decoration: none; 
+      color: inherit; 
+      display: block; 
+      border: 1px solid var(--border-color);
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+    .film-card:hover { 
+      transform: translateY(-4px); 
+      box-shadow: 0 8px 20px rgba(0, 168, 255, 0.25);
+      border-color: rgba(0, 168, 255, 0.4);
+    }
+    .poster-container { position: relative; width: 100%; height: 220px; background: #222530; }
+    .film-card img { width: 100%; height: 100%; object-fit: cover; }
+    .badge-quality { position: absolute; top: 8px; left: 8px; background: var(--accent); color: #fff; font-size: 9px; font-weight: 800; padding: 3px 6px; border-radius: 4px; }
+    .badge-voice { position: absolute; top: 8px; right: 8px; background: rgba(0,0,0,0.8); backdrop-filter: blur(4px); color: #fff; font-size: 9px; padding: 3px 6px; border-radius: 4px; }
+    .film-info { padding: 10px; }
+    .film-title { font-size: 13px; font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; margin-bottom: 4px; }
+    .film-meta { font-size: 11px; color: var(--text-muted); }
+
+    /* Desktop View */
+    @media (min-width: 768px) {
+      .header-content { flex-direction: row; align-items: center; justify-content: space-between; }
+      .search-box { width: 380px; }
+      .main-layout { flex-direction: row; }
+      aside { width: 230px; flex-shrink: 0; }
+      .menu-list { display: block; }
+      .menu-list li { margin-bottom: 6px; }
+      .menu-list li a { background: transparent; padding: 8px 10px; font-size: 14px; }
+      .film-grid { grid-template-columns: repeat(auto-fill, minmax(175px, 1fr)); gap: 18px; }
+      .poster-container { height: 250px; }
+    }
+  </style>
 </head>
 <body>
 
   <header>
-    <a href="index.html" class="logo">REZKA<span>.UZ</span></a>
-    <div class="search-box">
-      <input type="text" placeholder="Kino yoki serial nomini kiriting...">
-      <button>Qidiruv</button>
+    <div class="header-content">
+      <div class="top-bar">
+        <a href="index.html" class="logo">REZKA<span>.UZ</span></a>
+        <div class="lang-switcher">
+          <button class="lang-btn active" onclick="setLanguage('uz')">UZ</button>
+          <button class="lang-btn" onclick="setLanguage('ru')">RU</button>
+          <button class="lang-btn" onclick="setLanguage('en')">EN</button>
+        </div>
+      </div>
+      <div class="search-box">
+        <input type="text" id="searchInput" placeholder="Kino yoki serial nomini kiriting...">
+        <button id="searchBtn">Qidiruv</button>
+      </div>
     </div>
   </header>
 
   <div class="main-layout">
     <aside>
-      <div class="menu-title">Bo'limlar</div>
+      <div class="menu-title" data-i18n="sections">Bo'limlar</div>
       <ul class="menu-list">
-        <li><a href="index.html">Filmlar</a></li>
-        <li><a href="#">Seriallar</a></li>
-        <li><a href="#">Multfilmlar</a></li>
-        <li><a href="#">Anime</a></li>
+        <li><a href="index.html" data-i18n="movies">Filmlar</a></li>
+        <li><a href="#" data-i18n="series">Seriallar</a></li>
+        <li><a href="#" data-i18n="cartoons">Multfilmlar</a></li>
+        <li><a href="#" data-i18n="anime">Anime</a></li>
       </ul>
-      <div class="menu-title">Janrlar</div>
+      <div class="menu-title" data-i18n="genres">Janrlar</div>
       <ul class="menu-list">
-        <li><a href="#">Jangari</a></li>
-        <li><a href="#">Komediya</a></li>
-        <li><a href="#">Fantastika</a></li>
-        <li><a href="#">Dramatik</a></li>
+        <li><a href="#" data-i18n="action">Jangari</a></li>
+        <li><a href="#" data-i18n="comedy">Komediya</a></li>
+        <li><a href="#" data-i18n="scifi">Fantastika</a></li>
+        <li><a href="#" data-i18n="drama">Dramatik</a></li>
       </ul>
     </aside>
 
     <main>
       <div class="section-header">
-        <h1 class="section-title">So'nggi qo'shilganlar</h1>
+        <h1 class="section-title" data-i18n="latest">So'nggi qo'shilganlar</h1>
       </div>
 
       <div class="film-grid">
         <a href="movie.html" class="film-card">
           <div class="poster-container">
             <span class="badge-quality">FHD 1080p</span>
-            <span class="badge-voice">O'zbek tilida</span>
+            <span class="badge-voice" data-i18n="badgeUz">O'zbek tilida</span>
             <img src="https://images.unsplash.com/photo-1536440136628-849c177e76a1?auto=format&fit=crop&w=400&q=80" alt="Poster">
           </div>
           <div class="film-info">
@@ -94,7 +225,7 @@
         <a href="movie.html" class="film-card">
           <div class="poster-container">
             <span class="badge-quality">HD</span>
-            <span class="badge-voice">1-Mavsum</span>
+            <span class="badge-voice" data-i18n="badgeSeason">1-Mavsum</span>
             <img src="https://images.unsplash.com/photo-1626814026160-2237a95fc5a0?auto=format&fit=crop&w=400&q=80" alt="Poster">
           </div>
           <div class="film-info">
@@ -105,6 +236,78 @@
       </div>
     </main>
   </div>
+
+  <script>
+    const i18n = {
+      uz: {
+        searchPlaceholder: "Kino yoki serial nomini kiriting...",
+        searchBtn: "Qidiruv",
+        sections: "Bo'limlar",
+        movies: "Filmlar",
+        series: "Seriallar",
+        cartoons: "Multfilmlar",
+        anime: "Anime",
+        genres: "Janrlar",
+        action: "Jangari",
+        comedy: "Komediya",
+        scifi: "Fantastika",
+        drama: "Dramatik",
+        latest: "So'nggi qo'shilganlar",
+        badgeUz: "O'zbek tilida",
+        badgeSeason: "1-Mavsum"
+      },
+      ru: {
+        searchPlaceholder: "Введите название фильма или сериала...",
+        searchBtn: "Поиск",
+        sections: "Разделы",
+        movies: "Фильмы",
+        series: "Сериалы",
+        cartoons: "Мультфильмы",
+        anime: "Аниме",
+        genres: "Жанры",
+        action: "Боевики",
+        comedy: "Комедии",
+        scifi: "Фантастика",
+        drama: "Драмы",
+        latest: "Последние обновления",
+        badgeUz: "На узбекском",
+        badgeSeason: "1 Сезон"
+      },
+      en: {
+        searchPlaceholder: "Search movies or TV shows...",
+        searchBtn: "Search",
+        sections: "Sections",
+        movies: "Movies",
+        series: "TV Series",
+        cartoons: "Cartoons",
+        anime: "Anime",
+        genres: "Genres",
+        action: "Action",
+        comedy: "Comedy",
+        scifi: "Sci-Fi",
+        drama: "Drama",
+        latest: "Recently Added",
+        badgeUz: "Uzbek Dub",
+        badgeSeason: "Season 1"
+      }
+    };
+
+    function setLanguage(lang) {
+      document.querySelectorAll('.lang-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.textContent.toLowerCase() === lang);
+      });
+
+      document.getElementById('searchInput').placeholder = i18n[lang].searchPlaceholder;
+      document.getElementById('searchBtn').textContent = i18n[lang].searchBtn;
+
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (i18n[lang][key]) {
+          el.textContent = i18n[lang][key];
+        }
+      });
+    }
+  </script>
 
 </body>
 </html>
