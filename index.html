@@ -35,7 +35,7 @@
 
     /* Lang Selector */
     .lang-switcher { display: flex; background: #222530; padding: 3px; border-radius: 8px; border: 1px solid var(--border-color); }
-    .lang-btn { background: transparent; border: none; color: var(--text-muted); padding: 4px 10px; font-size: 11px; font-weight: 700; border-radius: 6px; cursor: pointer; }
+    .lang-btn { background: transparent; border: none; color: var(--text-muted); padding: 4px 10px; font-size: 11px; font-weight: 700; border-radius: 6px; cursor: pointer; transition: 0.2s; }
     .lang-btn.active { background: var(--accent); color: #fff; }
 
     /* Search */
@@ -53,7 +53,7 @@
 
     main { flex: 1; }
 
-    /* Carousel Section (Новые) */
+    /* Carousel Section */
     .carousel-section { margin-bottom: 25px; position: relative; }
     .carousel-title { font-size: 17px; font-weight: 700; margin-bottom: 12px; color: #fff; }
     .carousel-wrapper { position: relative; display: flex; align-items: center; }
@@ -64,14 +64,15 @@
     .carousel-poster img { width: 100%; height: 100%; object-fit: cover; }
     .nav-btn { position: absolute; left: -10px; top: 40%; transform: translateY(-50%); background: rgba(38, 41, 51, 0.9); border: 1px solid var(--border-color); color: #fff; width: 32px; height: 32px; border-radius: 50%; cursor: pointer; z-index: 10; font-weight: bold; }
 
-    /* Filter Tabs (Последние поступления, Популярные и т.д.) */
+    /* Filter Tabs */
     .filter-tabs { display: flex; gap: 10px; border-bottom: 2px solid var(--border-color); padding-bottom: 10px; margin-bottom: 18px; overflow-x: auto; scrollbar-width: none; }
     .filter-tab { background: transparent; border: none; color: var(--text-muted); font-size: 14px; font-weight: 700; padding: 6px 12px; cursor: pointer; border-radius: 6px; white-space: nowrap; }
     .filter-tab.active { background: #222530; color: #fff; border-bottom: 2px solid var(--accent); }
 
     /* Grid */
     .film-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
-    .film-card { background: var(--card-bg); border-radius: 10px; overflow: hidden; text-decoration: none; color: inherit; border: 1px solid var(--border-color); }
+    .film-card { background: var(--card-bg); border-radius: 10px; overflow: hidden; text-decoration: none; color: inherit; border: 1px solid var(--border-color); transition: transform 0.2s; }
+    .film-card:hover { transform: translateY(-3px); border-color: var(--accent); }
     .poster-container { position: relative; width: 100%; height: 220px; background: #222530; }
     .film-card img { width: 100%; height: 100%; object-fit: cover; }
     .badge-quality { position: absolute; top: 8px; left: 8px; background: var(--accent); color: #fff; font-size: 9px; font-weight: 800; padding: 3px 6px; border-radius: 4px; }
@@ -133,7 +134,7 @@
     </aside>
 
     <main>
-      <!-- Horizontal Carousel (Новые) -->
+      <!-- Horizontal Carousel -->
       <section class="carousel-section">
         <h2 class="carousel-title" data-i18n="newReleases">Yangi filmlar va seriallar</h2>
         <div class="carousel-wrapper">
@@ -145,8 +146,8 @@
                 <img src="https://images.unsplash.com/photo-1536440136628-849c177e76a1?auto=format&fit=crop&w=300&q=80" alt="Film">
               </div>
               <div class="film-info">
-                <div class="film-title">Isyon</div>
-                <div class="film-meta">2026, Jangari</div>
+                <div class="film-title" data-i18n="movieRebelTitle">Isyon</div>
+                <div class="film-meta" data-i18n="movieRebelMeta">2026, Jangari</div>
               </div>
             </a>
             <a href="movie.html" class="carousel-card">
@@ -155,8 +156,8 @@
                 <img src="https://images.unsplash.com/photo-1626814026160-2237a95fc5a0?auto=format&fit=crop&w=300&q=80" alt="Film">
               </div>
               <div class="film-info">
-                <div class="film-title">Fonarlar</div>
-                <div class="film-meta">2026, Fantastika</div>
+                <div class="film-title" data-i18n="movieLanternsTitle">Fonarlar</div>
+                <div class="film-meta" data-i18n="movieLanternsMeta">2026, Fantastika</div>
               </div>
             </a>
             <a href="movie.html" class="carousel-card">
@@ -165,8 +166,8 @@
                 <img src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=300&q=80" alt="Film">
               </div>
               <div class="film-info">
-                <div class="film-title">Taklifnoma</div>
-                <div class="film-meta">2026, Komediya</div>
+                <div class="film-title" data-i18n="movieInviteTitle">Taklifnoma</div>
+                <div class="film-meta" data-i18n="movieInviteMeta">2026, Komediya</div>
               </div>
             </a>
           </div>
@@ -190,8 +191,8 @@
             <img src="https://images.unsplash.com/photo-1536440136628-849c177e76a1?auto=format&fit=crop&w=400&q=80" alt="Poster">
           </div>
           <div class="film-info">
-            <div class="film-title">Qasoskorlar: Intihoy</div>
-            <div class="film-meta">2026, Fantastika, Jangari</div>
+            <div class="film-title" data-i18n="movieAvgTitle">Qasoskorlar: Intihoy</div>
+            <div class="film-meta" data-i18n="movieAvgMeta">2026, Fantastika, Jangari</div>
           </div>
         </a>
 
@@ -202,8 +203,8 @@
             <img src="https://images.unsplash.com/photo-1626814026160-2237a95fc5a0?auto=format&fit=crop&w=400&q=80" alt="Poster">
           </div>
           <div class="film-info">
-            <div class="film-title">Koinot Sirlari (Serial)</div>
-            <div class="film-meta">2026, Sarguzasht</div>
+            <div class="film-title" data-i18n="movieSpaceTitle">Koinot Sirlari (Serial)</div>
+            <div class="film-meta" data-i18n="movieSpaceMeta">2026, Sarguzasht</div>
           </div>
         </a>
       </div>
@@ -231,7 +232,19 @@
         tabWaiting: "Kutilayotganlar",
         tabWatching: "Hozir ko'rilmoqda",
         badgeUz: "O'zbek tilida",
-        badgeSeason: "1-Mavsum"
+        badgeSeason: "1-Mavsum",
+        
+        // Переводы фильмов
+        movieRebelTitle: "Isyon",
+        movieRebelMeta: "2026, Jangari",
+        movieLanternsTitle: "Fonarlar",
+        movieLanternsMeta: "2026, Fantastika",
+        movieInviteTitle: "Taklifnoma",
+        movieInviteMeta: "2026, Komediya",
+        movieAvgTitle: "Qasoskorlar: Intihoy",
+        movieAvgMeta: "2026, Fantastika, Jangari",
+        movieSpaceTitle: "Koinot Sirlari (Serial)",
+        movieSpaceMeta: "2026, Sarguzasht"
       },
       ru: {
         searchPlaceholder: "Введите название фильма или сериала...",
@@ -252,7 +265,19 @@
         tabWaiting: "В ожидании",
         tabWatching: "Сейчас смотрят",
         badgeUz: "На узбекском",
-        badgeSeason: "1 Сезон"
+        badgeSeason: "1 Сезон",
+
+        // Переводы фильмов
+        movieRebelTitle: "Мятеж",
+        movieRebelMeta: "2026, США, Боевики",
+        movieLanternsTitle: "Фонари",
+        movieLanternsMeta: "2026, США, Фантастика",
+        movieInviteTitle: "Приглашение",
+        movieInviteMeta: "2026, США, Комедии",
+        movieAvgTitle: "Мстители: Финал",
+        movieAvgMeta: "2026, США, Фантастика",
+        movieSpaceTitle: "Тайны Космоса (Сериал)",
+        movieSpaceMeta: "2026, Приключения"
       },
       en: {
         searchPlaceholder: "Search movies or TV shows...",
@@ -273,7 +298,19 @@
         tabWaiting: "Upcoming",
         tabWatching: "Trending Now",
         badgeUz: "Uzbek Dub",
-        badgeSeason: "Season 1"
+        badgeSeason: "Season 1",
+
+        // Переводы фильмов
+        movieRebelTitle: "Rebellion",
+        movieRebelMeta: "2026, Action",
+        movieLanternsTitle: "Lanterns",
+        movieLanternsMeta: "2026, Sci-Fi",
+        movieInviteTitle: "The Invitation",
+        movieInviteMeta: "2026, Comedy",
+        movieAvgTitle: "Avengers: Endgame",
+        movieAvgMeta: "2026, Sci-Fi, Action",
+        movieSpaceTitle: "Cosmos Secrets (Series)",
+        movieSpaceMeta: "2026, Adventure"
       }
     };
 
