@@ -61,10 +61,14 @@
     .brand-mark { display: grid; place-items: center; width: 34px; height: 34px; color: #071017; border-radius: 11px; background: linear-gradient(145deg, var(--accent), #83a3ff); box-shadow: 0 0 28px rgba(94,231,255,.28); }
     .brand span { color: var(--accent); }
     .search { position: relative; flex: 1; max-width: 590px; margin: auto; }
-    .search input { width: 100%; height: 46px; padding: 0 48px 0 18px; color: var(--text); outline: none; border: 1px solid var(--line); border-radius: 14px; background: rgba(255,255,255,.055); transition: .2s ease; }
-    .search input::placeholder { color: var(--muted-2); }
-    .search input:focus { border-color: rgba(94,231,255,.65); box-shadow: 0 0 0 4px rgba(94,231,255,.09); }
-    .search button { position: absolute; top: 7px; right: 7px; width: 32px; height: 32px; display: grid; place-items: center; border: 0; border-radius: 9px; color: #071017; background: var(--accent); }
+    .search::before { position: absolute; z-index: 1; top: 50%; left: 17px; width: 17px; height: 17px; content: ""; transform: translateY(-50%); opacity: .72; background: center/contain no-repeat url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%235ee7ff' stroke-width='2' stroke-linecap='round'%3E%3Ccircle cx='11' cy='11' r='6.5'/%3E%3Cpath d='m16 16 5 5'/%3E%3C/svg%3E"); pointer-events: none; }
+    .search input { width: 100%; height: 50px; padding: 0 114px 0 48px; color: var(--text); outline: none; border: 1px solid rgba(255,255,255,.12); border-radius: 16px; background: linear-gradient(100deg, rgba(20,28,42,.94), rgba(14,18,28,.82)); box-shadow: inset 0 1px rgba(255,255,255,.055), 0 8px 24px rgba(0,0,0,.12); transition: border-color .2s ease, box-shadow .2s ease, background .2s ease; }
+    .search input::placeholder { color: #738096; }
+    .search input:focus { border-color: rgba(94,231,255,.72); background: linear-gradient(100deg, rgba(24,35,51,.98), rgba(15,21,32,.94)); box-shadow: 0 0 0 4px rgba(94,231,255,.08), 0 10px 30px rgba(0,0,0,.2); }
+    .search button { position: absolute; top: 6px; right: 6px; width: 38px; height: 38px; display: grid; place-items: center; border: 0; border-radius: 11px; color: #071017; background: var(--accent); box-shadow: 0 5px 16px rgba(94,231,255,.22); transition: transform .2s ease, box-shadow .2s ease; }
+    .search button:hover { transform: scale(1.05); box-shadow: 0 7px 20px rgba(94,231,255,.36); }
+    .search button svg { width: 17px; height: 17px; }
+    .search-hint { position: absolute; z-index: 1; top: 50%; right: 54px; padding: 3px 6px; color: #8190a5; border: 1px solid rgba(255,255,255,.1); border-radius: 6px; background: rgba(255,255,255,.05); transform: translateY(-50%); font-size: 10px; font-weight: 800; pointer-events: none; }
     .language { display: flex; gap: 3px; padding: 4px; border: 1px solid var(--line); border-radius: 12px; background: rgba(255,255,255,.045); }
     .lang-btn { border: 0; border-radius: 8px; padding: 6px 8px; color: var(--muted); background: transparent; font-size: 11px; font-weight: 850; }
     .lang-btn.active { color: #081016; background: var(--accent); }
@@ -151,7 +155,8 @@
       .brand { flex: 1; }
       .mobile-menu { display: block; }
       .language { order: 3; width: 100%; justify-content: center; }
-      .search { order: 2; flex-basis: 100%; }
+      .search { order: 2; flex-basis: 100%; max-width: none; }
+      .search-hint { display: none; }
       .page { padding: 20px 16px 50px; }
       .hero { min-height: 410px; padding: 24px; align-items: end; }
       .hero::before { background-position: 61% center; background: linear-gradient(0deg, rgba(7,9,13,.98) 4%, rgba(7,9,13,.48) 75%, rgba(7,9,13,.15)), url('https://images.unsplash.com/photo-1536440136628-849c177e76a1?auto=format&fit=crop&w=1000&q=85') center/cover; }
@@ -171,7 +176,8 @@
       <form class="search" id="searchForm">
         <label class="sr-only" for="searchInput">Поиск</label>
         <input id="searchInput" type="search" autocomplete="off" placeholder="Kino yoki serial nomini kiriting...">
-        <button type="submit" aria-label="Поиск">⌕</button>
+        <span class="search-hint">⌘ K</span>
+        <button type="submit" aria-label="Поиск"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="10.8" cy="10.8" r="6.6"></circle><path d="m16 16 4.5 4.5"></path></svg></button>
       </form>
       <div class="language" aria-label="Language selector">
         <button class="lang-btn active" data-lang="uz">UZ</button>
