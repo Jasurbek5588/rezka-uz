@@ -1,107 +1,65 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="uz">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Qasoskorlar: Intihoy - REZKA.UZ</title>
+  <meta name="theme-color" content="#07090d">
+  <title>Qasoskorlar: Intihoy — REZKA.UZ</title>
   <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Arial, sans-serif; }
-    body { background-color: #121214; color: #e1e1e6; }
-    header { background-color: #1a1a1e; padding: 12px 4%; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #29292e; }
-    .logo { font-size: 22px; font-weight: 800; color: #00a8ff; text-decoration: none; }
-    .logo span { color: #fff; }
-    .container { max-width: 1100px; margin: 25px auto; padding: 0 15px; }
-    .movie-header { display: flex; gap: 25px; margin-bottom: 25px; background: #1a1a1e; padding: 20px; border-radius: 8px; }
-    .poster { width: 200px; flex-shrink: 0; border-radius: 6px; overflow: hidden; }
-    .poster img { width: 100%; display: block; }
-    .movie-details { flex: 1; }
-    .movie-title-uz { font-size: 24px; font-weight: 700; color: #fff; }
-    .movie-title-orig { font-size: 13px; color: #7c7c8a; margin-bottom: 15px; }
-    .info-table { width: 100%; border-collapse: collapse; }
-    .info-table td { padding: 6px 0; font-size: 13px; }
-    .info-table td:first-child { color: #7c7c8a; width: 120px; }
-    .imdb-rating { background: #f5c518; color: #000; font-weight: bold; padding: 2px 6px; border-radius: 3px; font-size: 11px; }
-    .player-section { background: #1a1a1e; padding: 20px; border-radius: 8px; }
-    .control-block { margin-bottom: 15px; }
-    .control-label { font-size: 12px; color: #7c7c8a; text-transform: uppercase; margin-bottom: 8px; font-weight: 700; }
-    .btn-group { display: flex; flex-wrap: wrap; gap: 8px; }
-    .btn-opt { background: #29292e; border: 1px solid #323238; color: #c4c4cc; padding: 6px 14px; border-radius: 4px; cursor: pointer; font-size: 13px; }
-    .btn-opt:hover { background: #323238; color: #fff; }
-    .btn-opt.active { background: #00a8ff; border-color: #00a8ff; color: #fff; font-weight: 600; }
-    .media-player { position: relative; padding-bottom: 56.25%; height: 0; background: #000; border-radius: 6px; overflow: hidden; margin-top: 15px; }
-    .media-player video { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
-    @media (max-width: 768px) { .movie-header { flex-direction: column; } .poster { width: 100%; max-width: 200px; margin: 0 auto; } }
+    :root { --bg:#07090d; --surface:rgba(17,21,31,.86); --surface-2:#171c28; --line:rgba(255,255,255,.09); --text:#f5f7fb; --muted:#8e98ac; --accent:#5ee7ff; --accent-2:#7b61ff; --gold:#ffc857; --shadow:0 24px 80px rgba(0,0,0,.38); }
+    * { box-sizing:border-box; } html { scroll-behavior:smooth; } body { min-width:320px; margin:0; color:var(--text); background:radial-gradient(circle at 10% 0%,rgba(94,231,255,.1),transparent 32rem),radial-gradient(circle at 100% 0%,rgba(123,97,255,.14),transparent 32rem),var(--bg); font:500 15px/1.5 Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; } a { color:inherit; text-decoration:none; } button,input { font:inherit; } button { cursor:pointer; }
+    .header { position:sticky; top:0; z-index:10; border-bottom:1px solid var(--line); background:rgba(7,9,13,.72); backdrop-filter:blur(22px); }
+    .header-inner { max-width:1240px; margin:auto; padding:16px 24px; display:flex; align-items:center; justify-content:space-between; gap:20px; }
+    .brand { display:inline-flex; align-items:center; gap:10px; font-size:22px; font-weight:950; letter-spacing:-.07em; } .brand-mark { display:grid; place-items:center; width:34px; height:34px; color:#071017; border-radius:11px; background:linear-gradient(145deg,var(--accent),#83a3ff); box-shadow:0 0 28px rgba(94,231,255,.28); } .brand span { color:var(--accent); }
+    .back-link { display:inline-flex; align-items:center; gap:8px; padding:9px 13px; border:1px solid var(--line); border-radius:11px; color:var(--muted); background:rgba(255,255,255,.045); font-size:12px; font-weight:800; transition:.2s; } .back-link:hover { color:var(--text); background:rgba(255,255,255,.1); }
+    .container { max-width:1240px; margin:auto; padding:34px 24px 70px; }
+    .movie-hero { position:relative; overflow:hidden; display:grid; grid-template-columns:250px minmax(0,1fr); gap:30px; padding:28px; border:1px solid var(--line); border-radius:24px; background:var(--surface); box-shadow:var(--shadow); isolation:isolate; }
+    .movie-hero::before { position:absolute; inset:0; z-index:-2; content:""; opacity:.2; background:url('https://images.unsplash.com/photo-1536440136628-849c177e76a1?auto=format&fit=crop&w=1400&q=80') center/cover; filter:blur(7px); transform:scale(1.04); } .movie-hero::after { position:absolute; inset:0; z-index:-1; content:""; background:linear-gradient(90deg,rgba(17,21,31,.98),rgba(17,21,31,.82) 50%,rgba(17,21,31,.96)); }
+    .poster-wrap { position:relative; max-width:250px; } .poster { width:100%; display:block; aspect-ratio:2/2.85; object-fit:cover; border:1px solid rgba(255,255,255,.12); border-radius:18px; box-shadow:0 18px 42px rgba(0,0,0,.4); } .poster-tag { position:absolute; left:12px; top:12px; padding:5px 8px; border-radius:7px; color:#071017; background:var(--accent); font-size:10px; font-weight:950; }
+    .details { align-self:center; } .kicker { margin:0 0 9px; color:var(--accent); font-size:11px; letter-spacing:.16em; text-transform:uppercase; font-weight:900; } h1 { margin:0; max-width:680px; font-size:clamp(30px,5vw,58px); line-height:.98; letter-spacing:-.06em; } .original-title { margin:10px 0 23px; color:var(--muted); font-size:14px; }
+    .chips { display:flex; flex-wrap:wrap; gap:7px; margin:0 0 20px; } .chip { padding:5px 9px; border:1px solid var(--line); border-radius:8px; color:#c9d1df; background:rgba(255,255,255,.06); font-size:11px; } .chip.rating { color:#161108; border-color:transparent; background:var(--gold); font-weight:900; }
+    .description { max-width:680px; margin:0 0 22px; color:#bbc4d3; }
+    .metadata { display:grid; grid-template-columns:repeat(3,minmax(100px,1fr)); gap:14px; max-width:680px; } .metadata-item { padding-left:12px; border-left:2px solid rgba(94,231,255,.45); } .metadata-label { color:var(--muted); font-size:10px; text-transform:uppercase; letter-spacing:.08em; } .metadata-value { margin-top:2px; font-size:13px; font-weight:800; }
+    .watch-section { margin-top:24px; padding:24px; border:1px solid var(--line); border-radius:24px; background:var(--surface); box-shadow:var(--shadow); } .watch-head { display:flex; justify-content:space-between; align-items:start; gap:16px; margin-bottom:18px; } .watch-head h2 { margin:0; font-size:21px; letter-spacing:-.035em; } .watch-head p { margin:4px 0 0; color:var(--muted); font-size:12px; } .live-dot { display:inline-flex; align-items:center; gap:7px; color:var(--muted); font-size:11px; } .live-dot::before { content:""; width:7px; height:7px; border-radius:99px; background:#53e39b; box-shadow:0 0 12px #53e39b; }
+    .controls-grid { display:grid; grid-template-columns:1fr 1fr; gap:18px; margin-bottom:19px; } .control-label { display:block; margin-bottom:8px; color:var(--muted); font-size:10px; letter-spacing:.1em; text-transform:uppercase; font-weight:900; } .options { display:flex; flex-wrap:wrap; gap:8px; } .option { padding:8px 12px; border:1px solid var(--line); border-radius:10px; color:#b7c0d0; background:var(--surface-2); font-size:12px; font-weight:750; transition:.2s; } .option:hover { color:var(--text); border-color:rgba(94,231,255,.4); } .option.active { color:#071017; border-color:var(--accent); background:var(--accent); box-shadow:0 7px 20px rgba(94,231,255,.18); }
+    .player { position:relative; overflow:hidden; aspect-ratio:16/9; min-height:260px; border:1px solid rgba(255,255,255,.1); border-radius:16px; background:#000; } .player video { width:100%; height:100%; display:block; } .player::before { position:absolute; inset:0; z-index:1; pointer-events:none; content:""; border:1px solid rgba(255,255,255,.04); border-radius:16px; }
+    .player-note { display:flex; justify-content:space-between; gap:12px; margin-top:12px; color:var(--muted); font-size:11px; } .player-note span:last-child { color:var(--accent); }
+    .toast { position:fixed; right:24px; bottom:24px; z-index:20; max-width:calc(100% - 32px); padding:12px 15px; border:1px solid rgba(94,231,255,.3); border-radius:12px; color:var(--text); background:rgba(17,21,31,.94); box-shadow:var(--shadow); opacity:0; transform:translateY(15px); pointer-events:none; transition:.25s; font-size:13px; } .toast.show { opacity:1; transform:translateY(0); }
+    @media(max-width:700px) { .header-inner { padding:12px 16px; } .back-link { font-size:0; padding:10px; } .back-link::before { content:"←"; font-size:18px; } .container { padding:20px 16px 50px; } .movie-hero { grid-template-columns:1fr; gap:22px; padding:18px; } .poster-wrap { width:min(190px,70vw); margin:auto; } .details { text-align:center; } .chips { justify-content:center; } .description { margin-right:auto; margin-left:auto; } .metadata { text-align:left; } .watch-section { padding:18px; } .watch-head { display:block; } .live-dot { margin-top:10px; } .controls-grid { grid-template-columns:1fr; gap:15px; } .player { min-height:0; } .player-note { display:block; } .player-note span { display:block; } .player-note span + span { margin-top:4px; } }
   </style>
 </head>
 <body>
-
-  <header>
-    <a href="index.html" class="logo">REZKA<span>.UZ</span></a>
-  </header>
-
-  <div class="container">
-    <div class="movie-header">
-      <div class="poster">
-        <img src="https://images.unsplash.com/photo-1536440136628-849c177e76a1?auto=format&fit=crop&w=400&q=80" alt="Poster">
+  <header class="header"><div class="header-inner"><a class="brand" href="index.html" aria-label="REZKA.UZ"><span class="brand-mark">R</span><span>REZKA<span>.UZ</span></span></a><a class="back-link" href="index.html"><span>←</span><span data-i18n="back">Каталогқа қайту</span></a></div></header>
+  <main class="container">
+    <section class="movie-hero">
+      <div class="poster-wrap"><span class="poster-tag">FHD 1080p</span><img class="poster" src="https://images.unsplash.com/photo-1536440136628-849c177e76a1?auto=format&fit=crop&w=700&q=85" alt="Qasoskorlar: Intihoy poster"></div>
+      <div class="details">
+        <p class="kicker" data-i18n="kicker">Premyera · 2026</p><h1 data-i18n="title">Qasoskorlar: Intihoy</h1><p class="original-title">Avengers: Endgame</p>
+        <div class="chips"><span class="chip rating">★ IMDb 8.5</span><span class="chip" data-i18n="genre1">Jangari</span><span class="chip" data-i18n="genre2">Fantastika</span><span class="chip">2h 58m</span></div>
+        <p class="description" data-i18n="description">Koinotdagi tartibni qaytarish va dunyoni qutqarish uchun oxirgi hal qiluvchi jang. Qahramonlar o'z taqdirlari bilan yuzma-yuz keladi.</p>
+        <div class="metadata"><div class="metadata-item"><div class="metadata-label" data-i18n="yearLabel">Yil</div><div class="metadata-value">2026</div></div><div class="metadata-item"><div class="metadata-label" data-i18n="countryLabel">Mamlakat</div><div class="metadata-value" data-i18n="country">AQSh</div></div><div class="metadata-item"><div class="metadata-label" data-i18n="qualityLabel">Sifat</div><div class="metadata-value">Full HD</div></div></div>
       </div>
-      <div class="movie-details">
-        <h1 class="movie-title-uz">Qasoskorlar: Intihoy</h1>
-        <div class="movie-title-orig">Avengers: Endgame (2026)</div>
-        <table class="info-table">
-          <tr><td>Reyting:</td><td><span class="imdb-rating">IMDb 8.5</span></td></tr>
-          <tr><td>Yil:</td><td>2026</td></tr>
-          <tr><td>Janr:</td><td>Jangari, Fantastika</td></tr>
-          <tr><td>Tavsif:</td><td>Koinotdagi tartibni qaytarish va dunyoni qutqarish uchun oxirgi hal qiluvchi jang.</td></tr>
-        </table>
-      </div>
-    </div>
-
-    <div class="player-section">
-      <div class="control-block">
-        <div class="control-label">Ovoz berish (Tarjima):</div>
-        <div class="btn-group" id="voiceGroup">
-          <button class="btn-opt active" onclick="changeVoice('uz', this)">O'zbekcha dublyaj</button>
-          <button class="btn-opt" onclick="changeVoice('ru', this)">Ruscha tarjima</button>
-        </div>
-      </div>
-
-      <div class="control-block">
-        <div class="control-label">Qismni tanlang:</div>
-        <div class="btn-group" id="epGroup">
-          <button class="btn-opt active" onclick="changeEpisode(1, this)">1-Qism</button>
-          <button class="btn-opt" onclick="changeEpisode(2, this)">2-Qism</button>
-        </div>
-      </div>
-
-      <div class="media-player">
-        <video id="mainVideo" controls poster="https://images.unsplash.com/photo-1536440136628-849c177e76a1?auto=format&fit=crop&w=1200&q=80">
-          <source id="videoSource" src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" type="video/mp4">
-        </video>
-      </div>
-    </div>
-  </div>
-
+    </section>
+    <section class="watch-section">
+      <div class="watch-head"><div><h2 data-i18n="watchTitle">Tomosha qilish</h2><p data-i18n="watchSubtitle">Ovoz va qismni tanlang — tomosha qilishni boshlang.</p></div><span class="live-dot" data-i18n="online">Online player</span></div>
+      <div class="controls-grid"><div><span class="control-label" data-i18n="voiceLabel">Ovozli tarjima</span><div class="options" id="voiceGroup"><button class="option active" data-voice="uz" data-i18n="uzDub">O'zbekcha dublyaj</button><button class="option" data-voice="ru" data-i18n="ruDub">Ruscha tarjima</button></div></div><div><span class="control-label" data-i18n="episodeLabel">Qismni tanlang</span><div class="options" id="episodeGroup"><button class="option active" data-episode="1">1-Qism</button><button class="option" data-episode="2">2-Qism</button></div></div></div>
+      <div class="player"><video id="mainVideo" controls playsinline poster="https://images.unsplash.com/photo-1536440136628-849c177e76a1?auto=format&fit=crop&w=1200&q=85"><source id="videoSource" src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" type="video/mp4"></video></div>
+      <div class="player-note"><span data-i18n="playerNote">Видео демонстрационное. Ваш плеер можно подключить к реальному источнику.</span><span>REZKA PLAYER · FHD</span></div>
+    </section>
+  </main>
+  <div class="toast" id="toast" role="status"></div>
   <script>
-    function changeVoice(lang, el) {
-      document.querySelectorAll('#voiceGroup .btn-opt').forEach(b => b.classList.remove('active'));
-      el.classList.add('active');
-      alert('Ovoz o\'zgartirildi: ' + (lang === 'uz' ? "O'zbekcha" : "Ruscha"));
-    }
-
-    function changeEpisode(ep, el) {
-      document.querySelectorAll('#epGroup .btn-opt').forEach(b => b.classList.remove('active'));
-      el.classList.add('active');
-      const video = document.getElementById('mainVideo');
-      const source = document.getElementById('videoSource');
-      
-      if(ep === 2) {
-        source.src = "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4";
-      } else {
-        source.src = "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4";
-      }
-      video.load();
-      video.play();
-    }
+    const i18n = {
+      uz:{back:"Katalogga qaytish",kicker:"Premyera · 2026",title:"Qasoskorlar: Intihoy",genre1:"Jangari",genre2:"Fantastika",description:"Koinotdagi tartibni qaytarish va dunyoni qutqarish uchun oxirgi hal qiluvchi jang. Qahramonlar o'z taqdirlari bilan yuzma-yuz keladi.",yearLabel:"Yil",countryLabel:"Mamlakat",country:"AQSh",qualityLabel:"Sifat",watchTitle:"Tomosha qilish",watchSubtitle:"Ovoz va qismni tanlang — tomosha qilishni boshlang.",online:"Online player",voiceLabel:"Ovozli tarjima",episodeLabel:"Qismni tanlang",uzDub:"O'zbekcha dublyaj",ruDub:"Ruscha tarjima",playerNote:"Video namoyish uchun. Haqiqiy manbaga ulashingiz mumkin.",voiceChanged:"Ovoz o'zgartirildi",episodeChanged:"Qism yuklanmoqda"},
+      ru:{back:"Вернуться в каталог",kicker:"Премьера · 2026",title:"Мстители: Финал",genre1:"Боевик",genre2:"Фантастика",description:"Последняя решающая битва, чтобы вернуть порядок во вселенной и спасти мир. Герои встречаются со своей судьбой.",yearLabel:"Год",countryLabel:"Страна",country:"США",qualityLabel:"Качество",watchTitle:"Смотреть фильм",watchSubtitle:"Выберите озвучку и часть — и начинайте просмотр.",online:"Онлайн-плеер",voiceLabel:"Озвучка",episodeLabel:"Выберите часть",uzDub:"Узбекский дубляж",ruDub:"Русская озвучка",playerNote:"Видео демонстрационное. Подключите свой реальный источник.",voiceChanged:"Озвучка изменена",episodeChanged:"Загружается часть"},
+      en:{back:"Back to catalog",kicker:"Premiere · 2026",title:"Avengers: Endgame",genre1:"Action",genre2:"Sci-Fi",description:"The final battle to restore order to the universe and save the world. The heroes face their destiny.",yearLabel:"Year",countryLabel:"Country",country:"USA",qualityLabel:"Quality",watchTitle:"Watch now",watchSubtitle:"Choose a dub and episode, then start watching.",online:"Online player",voiceLabel:"Audio track",episodeLabel:"Choose episode",uzDub:"Uzbek dub",ruDub:"Russian dub",playerNote:"Demo video. Connect your real source when ready.",voiceChanged:"Audio track changed",episodeChanged:"Loading episode"}
+    };
+    let lang = localStorage.getItem('rezka-lang') || 'uz'; const toast = document.getElementById('toast');
+    function applyLanguage(){ document.documentElement.lang=lang; document.querySelectorAll('[data-i18n]').forEach(el=>{ const key=el.dataset.i18n; if(i18n[lang][key]) el.textContent=i18n[lang][key]; }); }
+    function notify(text){ toast.textContent=text; toast.classList.add('show'); clearTimeout(notify.timer); notify.timer=setTimeout(()=>toast.classList.remove('show'),2300); }
+    document.querySelectorAll('#voiceGroup .option').forEach(btn=>btn.addEventListener('click',()=>{ document.querySelectorAll('#voiceGroup .option').forEach(b=>b.classList.remove('active')); btn.classList.add('active'); notify(i18n[lang].voiceChanged+': '+btn.textContent); }));
+    document.querySelectorAll('#episodeGroup .option').forEach(btn=>btn.addEventListener('click',()=>{ document.querySelectorAll('#episodeGroup .option').forEach(b=>b.classList.remove('active')); btn.classList.add('active'); const video=document.getElementById('mainVideo'); const source=document.getElementById('videoSource'); source.src=btn.dataset.episode==='2'?'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4':'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4'; video.load(); notify(i18n[lang].episodeChanged+' '+btn.textContent); }));
+    applyLanguage();
   </script>
 </body>
 </html>
